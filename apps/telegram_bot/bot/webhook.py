@@ -1,13 +1,10 @@
-import typing as t
-
 import telegram
+from telegram.utils.types import JSONDict
 
 from apps.telegram_bot.bot.setup import bot, dispatcher
 
-Json = t.Dict[str, t.Any]
 
-
-def process_telegram_event(update_json: Json) -> None:
+def process_telegram_event(update_json: JSONDict) -> None:
     """Process telegram update event by decoding Update
     object and passing it to the dispatcher. Called on webhook.
     """
