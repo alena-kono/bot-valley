@@ -53,15 +53,16 @@ WSGI_APPLICATION = "config.wsgi.application"
 # APPS
 # ------------------------------------------------------------------------------
 DJANGO_APPS = [
+    "django.contrib.sites",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
-    "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
     "django.forms",
+    "apps.telegram_bot",
 ]
 THIRD_PARTY_APPS = [
     "crispy_forms",
@@ -266,5 +267,6 @@ ACCOUNT_ADAPTER = "bot_valley.users.adapters.AccountAdapter"
 SOCIALACCOUNT_ADAPTER = "bot_valley.users.adapters.SocialAccountAdapter"
 
 
-# Your stuff...
+# Telegram
 # ------------------------------------------------------------------------------
+TELEGRAM_API_TOKEN = env.str("TELEGRAM_API_TOKEN")
