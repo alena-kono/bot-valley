@@ -44,4 +44,4 @@ services:
       - django
     ports:
       - "5000:5000"
-    command: python start_polling.py
+    command: python start_bot.py
