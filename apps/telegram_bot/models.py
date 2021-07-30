@@ -7,14 +7,24 @@ from apps.telegram_bot.utils import extract_user_data, prepare_user_data
 class TelegramUser(models.Model):
     """A Telegram user or bot."""
 
-    user_id = models.IntegerField(unique=True)
-    username = models.CharField(max_length=32, null=True, blank=True)
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255, null=True, blank=True)
+    class Meta:
+        verbose_name = "Telegram bot user"
+        verbose_name_plural = "Telegram bot users"
+
+    user_id = models.IntegerField(verbose_name="User ID", unique=True)
+    username = models.CharField(
+        verbose_name="@Username", max_length=32, null=True, blank=True
+    )
+    first_name = models.CharField(verbose_name="First Name", max_length=255)
+    last_name = models.CharField(
+        verbose_name="Last Name", max_length=255, null=True, blank=True
+    )
     language_code = models.CharField(max_length=8, null=True, blank=True)
     is_bot = models.BooleanField(default=False)
 
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    created_at = models.DateTimeField(
+        verbose_name="First launch of the bot", auto_now_add=True, editable=False
+    )
 
     def __str__(self) -> str:
         cls_name = self.__class__.__name__
