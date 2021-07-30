@@ -1,9 +1,9 @@
 import logging
 
 from telegram import Bot
-from telegram.ext import Dispatcher, Filters, MessageHandler
+from telegram.ext import CommandHandler, Dispatcher
 
-from apps.telegram_bot.bot.handlers import echo
+from apps.telegram_bot.bot.handlers import start
 from config.settings.base import TELEGRAM_API_TOKEN
 
 # Enable logging
@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 def register_handlers(dispatcher: Dispatcher) -> None:
     """Register bot handlers."""
 
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
+    dispatcher.add_handler(CommandHandler("start"), start)
 
 
 def setup() -> tuple[Bot, Dispatcher]:
