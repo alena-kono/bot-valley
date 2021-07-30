@@ -6,7 +6,7 @@ volumes:
   production_traefik: {}
 
 services:
-  django:
+  django: &django
     build:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
@@ -17,6 +17,7 @@ services:
     env_file:
       - ./.envs/.production/.django
       - ./.envs/.production/.postgres
+      - ./.envs/.production/.telegram
     command: /start
 
   postgres:
@@ -29,6 +30,15 @@ services:
       - production_postgres_data_backups:/backups:z
     env_file:
       - ./.envs/.production/.postgres
+
+  telegram_bot:
+    <<: *django
+    image: bot_valley_production_telegram_bot
+    depends_on:
+      - django
+    ports:
+      - "5000:5000"
+    command: python start_polling.py
 
   traefik:
     build:

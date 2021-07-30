@@ -5,12 +5,12 @@ volumes:
   local_postgres_data_backups: {}
 
 services:
-  django:
+  django: &django
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
     image: bot_valley_local_django
-    container_name: django
+    container_name: django_bot
     depends_on:
       - postgres
     volumes:
@@ -18,6 +18,9 @@ services:
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
+      # As we don't have separate telegram bot used for development,
+      # we will use production TELEGRAM_API_TOKEN
+      - ./.envs/.production/.telegram
     ports:
       - "8000:8000"
     command: /start
@@ -27,25 +30,18 @@ services:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
     image: bot_valley_production_postgres
-    container_name: postgres
+    container_name: postgres_bot
     volumes:
       - local_postgres_data:/var/lib/postgresql/data:Z
       - local_postgres_data_backups:/backups:z
     env_file:
       - ./.envs/.local/.postgres
 
-  docs:
-    image: bot_valley_local_docs
-    container_name: docs
-    build:
-      context: .
-      dockerfile: ./compose/local/docs/Dockerfile
-    env_file:
-      - ./.envs/.local/.django
-    volumes:
-      - ./docs:/docs:z
-      - ./config:/app/config:z
-      - ./bot_valley:/app/bot_valley:z
+  telegram_bot:
+    <<: *django
+    container_name: telegram_bot
+    depends_on:
+      - django
     ports:
-      - "7000:7000"
-    command: /start-docs
+      - "5000:5000"
+    command: python start_bot.py
