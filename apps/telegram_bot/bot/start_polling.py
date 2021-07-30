@@ -14,7 +14,3 @@ def start_polling() -> None:
 
     updater.start_polling()
     updater.idle()
-
-
-if __name__ == "__main__":
-    start_polling()

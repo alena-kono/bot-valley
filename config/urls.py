@@ -15,7 +15,8 @@ urlpatterns = [
     # User management
     path("users/", include("bot_valley.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
-    # Your stuff: custom urls includes go here
+    # Telegram bot app views
+    path("bot/", include("apps.telegram_bot.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
