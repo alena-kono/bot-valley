@@ -16,7 +16,7 @@ class WebhookBotView(View):
         request_body = json.loads(request.body)
         process_telegram_event(request_body)
         logging.info(f"Telegram webhook: {request_body}")
-        return HttpResponse({"ok": "POST request processed"}, status_code=200)
+        return HttpResponse({"ok": "POST request processed"})
 
 
 webhook_bot_view = WebhookBotView.as_view()
