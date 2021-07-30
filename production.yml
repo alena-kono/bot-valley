@@ -33,6 +33,7 @@ services:
 
   telegram_bot:
     <<: *django
+    image: bot_valley_production_telegram_bot
     depends_on:
       - django
     ports:
