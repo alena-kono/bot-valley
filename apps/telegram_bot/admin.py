@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.sites.models import Site
+from preferences.admin import PreferencesAdmin
 
-from apps.telegram_bot.models import TelegramUser
+from apps.telegram_bot.models import TelegramBotPreferences, TelegramUser
 
 
 @admin.register(TelegramUser)
@@ -51,3 +52,4 @@ class TelegramUserAdmin(admin.ModelAdmin):
 
 
 admin.site.unregister([Group, Site])
+admin.site.register(TelegramBotPreferences, PreferencesAdmin)

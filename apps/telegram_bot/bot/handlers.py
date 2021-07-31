@@ -2,12 +2,9 @@ from telegram import Update
 from telegram.ext import CallbackContext
 
 from apps.cryptocurrency.cryptocompare_api import CryptoCompareAPI
+from apps.telegram_bot.bot.default_static import CRYPTO_CURRENCIES_TO
 from apps.telegram_bot.bot.keyboards import get_crypto_currencies_keyboard
-from apps.telegram_bot.bot.manage_data import (
-    CRYPTO_CURRENCIES_FROM,
-    CRYPTO_CURRENCIES_TO,
-)
-from apps.telegram_bot.bot.static import MESSAGES
+from apps.telegram_bot.bot.preferences import BUTTONS_CRYPTO_CURRENCIES_FROM, MESSAGES
 from apps.telegram_bot.models import TelegramUser
 
 
@@ -29,10 +26,10 @@ def crypto_exchange_rate(update: Update, context: CallbackContext) -> None:
 
     crypto_requested = update.message.text
     exchange_rate = CryptoCompareAPI().get_exchange_rates(
-        from_=CRYPTO_CURRENCIES_FROM, to_=CRYPTO_CURRENCIES_TO
+        from_=BUTTONS_CRYPTO_CURRENCIES_FROM, to_=CRYPTO_CURRENCIES_TO
     )
     if exchange_rate:
-        rate = exchange_rate.get(crypto_requested).get("USD")
+        rate = exchange_rate.get(crypto_requested).get(CRYPTO_CURRENCIES_TO)
         text = f"`1 {crypto_requested} is {rate} USD`"
     else:
         text = MESSAGES.get("crypto_exchange_rate_error")
@@ -44,5 +41,16 @@ def any_other_content(update: Update, context: CallbackContext) -> None:
     received from the user.
     """
 
-    text = MESSAGES.get("any_other_content")
+    # text = MESSAGES.get("any_other_content")
+    text = BUTTONS_CRYPTO_CURRENCIES_FROM
+    update.message.reply_text(text=text)
+
+
+def error(update: Update, context: CallbackContext) -> None:
+    """Handler that processes errors that occured at the backend.
+    It sends user a message about the error.
+    """
+
+    # text = MESSAGES.get("any_other_content")
+    text = "SORRY ERROR"
     update.message.reply_text(text=text)

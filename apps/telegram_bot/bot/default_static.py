@@ -6,4 +6,11 @@ However, I have one useful feature - I can show you the exchange rate (to USD) o
 Please, contact administrator @alena_kono for help. 🤓",
     "any_other_content": "I can only send you current exchange rates for the currencies shown on a \
 keyboard below.\nTry and push the button! 💹 ⬇️",
+    "error": "Sorry, something wrong has happened and bot has broken. 😵 \n\
+Please, contact administrator @alena_kono, she will fix anything! :)",
 }
+
+BUTTONS_CRYPTO_CURRENCIES_FROM = "BTC,ETH,DOGE"
+
+# Only conversion to USD is supported at the moment.
+CRYPTO_CURRENCIES_TO = "USD"
