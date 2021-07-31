@@ -1,5 +1,5 @@
 from django.db import models
-from preferences.models import Preferences
+from preferences import models as pref_models
 from telegram import Update
 
 from apps.telegram_bot.bot.default_static import (
@@ -52,7 +52,7 @@ class TelegramUser(models.Model):
         return None
 
 
-class TelegramBotPreferences(Preferences):
+class TelegramBotPreferences(pref_models.Preferences):
     """Provide admin views for TelegramBotPreferences objects
     and a simple interface to preference values.
     """
@@ -64,7 +64,9 @@ class TelegramBotPreferences(Preferences):
         verbose_name_plural = "Telegram bot preferences"
 
     start_message = models.TextField(
-        name="Message for /start command", null=False, default=MESSAGES.get("start")
+        name="Message for /start command",
+        null=False,
+        default=MESSAGES.get("start"),
     )
     crypto_exchange_rate_error_message = models.TextField(
         name="Reply message if it's impossible to get crypto exchange rates",

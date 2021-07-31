@@ -1,7 +1,7 @@
 import telegram
 from telegram.ext.filters import MessageFilter
 
-from apps.telegram_bot.bot.preferences import BUTTONS_CRYPTO_CURRENCIES_FROM
+from apps.telegram_bot.preferences import BUTTONS_CRYPTO_CURRENCIES_FROM
 
 
 class CryptoCurrencyFilter(MessageFilter):

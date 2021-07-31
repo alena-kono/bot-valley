@@ -2,7 +2,7 @@ import typing as t
 
 import telegram
 
-from apps.telegram_bot.bot.preferences import BUTTONS_CRYPTO_CURRENCIES_FROM
+from apps.telegram_bot.preferences import BUTTONS_CRYPTO_CURRENCIES_FROM
 
 
 def _get_buttons(buttons: str) -> t.List[telegram.KeyboardButton]:
