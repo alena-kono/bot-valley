@@ -33,10 +33,10 @@ def crypto_exchange_rate(update: Update, context: CallbackContext) -> None:
     )
     if exchange_rate:
         rate = exchange_rate.get(crypto_requested).get("USD")
-        text = f"Current exchange rate for {crypto_requested} is {rate} USD"
+        text = f"`1 {crypto_requested} is {rate} USD`"
     else:
         text = MESSAGES.get("crypto_exchange_rate_error")
-    update.message.reply_text(text=text)
+    update.message.reply_text(text=text, parse_mode="Markdown")
 
 
 def any_other_content(update: Update, context: CallbackContext) -> None:
