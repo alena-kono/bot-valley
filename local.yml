@@ -18,9 +18,7 @@ services:
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
-      # As we don't have separate telegram bot used for development,
-      # we will use production TELEGRAM_API_TOKEN
-      - ./.envs/.production/.telegram
+      - ./.envs/.local/.telegram
     ports:
       - "8000:8000"
     command: /start

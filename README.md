@@ -15,11 +15,11 @@ This project is a test task of @BotValley. Techincal specification is
 Results
 -------
 
-Telegram bot at production. Link is
+Telegram bot is deployed at production. Link is
 [here](https://t.me/valley_test_task_bot).
 
 Link to the Django admin panel is
-[here](https://alena-kono.space/zrhsMcJeJNXUnXuKKPCSSoAFkxLm2DcS/).
+[here](https://alena-kono.space/zrhsMcJeJNXUnXuKKPCSSoAFkxLm2DcS/dynamic_preferences/globalpreferencemodel/).
 
 Test task checklist
 -------------------
@@ -41,9 +41,15 @@ Test task checklist
 - ✅ Editable bot messages and buttons
     (django-dynamic-preferences)
 - ✅ No unnecessary links, buttons, sections, etc.
-- ⬜️ Custom design (CSS)
+- ✅ Custom styles (CSS)
+
+Further plans
+-------------
+⬜️ Validation at admin panel preferences
 
 ⬜️ Tests
+
+⬜️ Mypy successful checks
 
 Settings
 --------
@@ -69,6 +75,7 @@ Installation and running locally (development)
 
 1.  Check whether PostgreSQL, Docker, Docker-compose, Git are installed
     and set up on your machine.
+
 2.  Within your virtual env:
 
         $ pip install -r requirements/local.txt
@@ -81,11 +88,16 @@ Installation and running locally (development)
 
         $ docker-compose -f local.yml run --rm django python manage.py createsuperuser
 
+5.  Build and up this project using docker-compose:
+
+        $ docker-compose -f local.yml up --build -d
+
 Installation and running globally (production)
 ----------------------------------------------
 
 1.  Check whether PostgreSQL, Docker, Docker-compose, Git are installed
     and set up on your machine.
+
 2.  Run migrations within docker container:
 
         $ docker-compose -f production.yml run --rm django python manage.py migrate
@@ -93,3 +105,7 @@ Installation and running globally (production)
 3.  Create superuser to get an access to the admin panel:
 
         $ docker-compose -f production.yml run --rm django python manage.py createsuperuser
+
+4.  Build and up this project using docker-compose:
+
+        $ docker-compose -f production.yml up --build -d
