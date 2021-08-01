@@ -62,6 +62,7 @@ DJANGO_APPS = [
     # "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
     "django.forms",
+    "dynamic_preferences",
     "apps.telegram_bot",
 ]
 THIRD_PARTY_APPS = [
@@ -78,7 +79,9 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # MIGRATIONS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
-MIGRATION_MODULES = {"sites": "bot_valley.contrib.sites.migrations"}
+MIGRATION_MODULES = {
+    "sites": "bot_valley.contrib.sites.migrations",
+}
 
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
@@ -177,6 +180,7 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 "bot_valley.utils.context_processors.settings_context",
+                "dynamic_preferences.processors.global_preferences",
             ],
         },
     }

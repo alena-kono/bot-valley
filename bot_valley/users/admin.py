@@ -5,6 +5,8 @@ from django.utils.translation import gettext_lazy as _
 
 from bot_valley.users.forms import UserChangeForm, UserCreationForm
 
+admin.site.site_header = "Bot Valley administration"
+
 User = get_user_model()
 
 
