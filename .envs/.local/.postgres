@@ -5,3 +5,14 @@ POSTGRES_PORT=5432
 POSTGRES_DB=bot_valley
 POSTGRES_USER=WxCcibugTheDDAFlQFvCTheVhUWzWCSH
 POSTGRES_PASSWORD=ymU2WlhuT7huqFvPRCRe0zCsWJLNQkxJ0ixrXjz2omNy7c9o0j46dr1akDGUpOjZ
+
+
+## .production settings template
+
+## PostgreSQL
+## ------------------------------------------------------------------------------
+# POSTGRES_HOST=
+# POSTGRES_PORT=
+# POSTGRES_DB=
+# POSTGRES_USER=
+# POSTGRES_PASSWORD=

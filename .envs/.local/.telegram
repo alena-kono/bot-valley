@@ -1,1 +1,3 @@
-TELEGRAM_API_TOKEN=YOUR_TOKEN
+# API TOKEN
+# ------------------------------------------------------------------------------
+TELEGRAM_API_TOKEN=
