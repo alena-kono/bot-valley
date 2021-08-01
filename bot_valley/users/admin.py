@@ -5,6 +5,8 @@ from django.utils.translation import gettext_lazy as _
 
 from bot_valley.users.forms import UserChangeForm, UserCreationForm
 
+admin.site.site_header = "Bot Valley administration"
+
 User = get_user_model()
 
 
@@ -32,21 +34,3 @@ class UserAdmin(auth_admin.UserAdmin):
     )
     list_display = ["username", "name", "is_superuser"]
     search_fields = ["name"]
-
-
-# from django.contrib.admin import AdminSite
-# from django.utils.translation import ugettext_lazy
-
-
-# class BotValleyAdminSite(AdminSite):
-#     # Text to put at the end of each page"s <title>.
-#     site_title = ugettext_lazy("Bot Valley admin")
-
-#     # Text to put in each page"s <h1> (and above login form).
-#     site_header = ugettext_lazy("Bot Valley administration")
-
-#     # Text to put at the top of the admin index page.
-#     index_title = ugettext_lazy("Bot Valley administration")
-
-# admin_site = BotValleyAdminSite()
-admin.site.site_header = "Bot Valley administration"
