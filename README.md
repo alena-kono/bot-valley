@@ -3,8 +3,8 @@ Bot Valley
 
 ![image](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter%0A%20%20:target:%20https://github.com/pydanny/cookiecutter-django/%0A%20%20:alt:%20Built%20with%20Cookiecutter%20Django)
 
-License
-:   MIT
+
+Runs on Python 3.9.x and Django 3.1.13.
 
 Purpose of the project
 ----------------------
@@ -20,8 +20,6 @@ Telegram bot at production. Link is
 
 Link to the Django admin panel is
 [here](https://alena-kono.space/zrhsMcJeJNXUnXuKKPCSSoAFkxLm2DcS/).
-
-
 
 Test task checklist
 -------------------
