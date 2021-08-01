@@ -11,11 +11,7 @@ from django.urls import reverse
 from bot_valley.users.forms import UserChangeForm
 from bot_valley.users.models import User
 from bot_valley.users.tests.factories import UserFactory
-from bot_valley.users.views import (
-    UserRedirectView,
-    UserUpdateView,
-    user_detail_view,
-)
+from bot_valley.users.views import UserRedirectView, UserUpdateView, user_detail_view
 
 pytestmark = pytest.mark.django_db
 
