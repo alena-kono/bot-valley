@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.sites.models import Site
-from preferences.admin import PreferencesAdmin
 
-from apps.telegram_bot.models import TelegramBotPreferences, TelegramUser
+from apps.telegram_bot.models import TelegramUser
+
+admin.site.unregister([Group, Site])
 
 
 @admin.register(TelegramUser)
@@ -49,7 +50,3 @@ class TelegramUserAdmin(admin.ModelAdmin):
         return f"@{obj.username}"
 
     username_with_at_sign.short_description = "@username"
-
-
-admin.site.unregister([Group, Site])
-admin.site.register(TelegramBotPreferences, PreferencesAdmin)

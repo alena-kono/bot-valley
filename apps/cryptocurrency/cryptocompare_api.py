@@ -40,11 +40,9 @@ class CryptoCompareAPI:
     ) -> RequestParams:
         """Convert ExchangeRateSymbols to request params."""
 
-        from_str = ",".join(from_)
-        to_str = ",".join(to_)
         params = {
-            "fsyms": from_str,
-            "tsyms": to_str,
+            "fsyms": from_,
+            "tsyms": to_,
         }
         return params
 
@@ -70,7 +68,7 @@ class CryptoCompareAPI:
         """Get and return the current price of any cryptocurrency (from_) in any other currency (to_).
         If the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion.
 
-        Return None in case if CryptoCompareAPIError occurs.
+        Return None and log error in case if CryptoCompareAPIError occurs.
         """
 
         request_params = self._convert_to_request_params(from_, to_)
@@ -81,3 +79,6 @@ class CryptoCompareAPI:
             logging.error(e)
             return None
         return exchange_rates
+
+
+cryptocompare_api = CryptoCompareAPI()

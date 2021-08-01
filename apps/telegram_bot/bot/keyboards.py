@@ -2,7 +2,7 @@ import typing as t
 
 import telegram
 
-from apps.telegram_bot.preferences import BUTTONS_CRYPTO_CURRENCIES_FROM
+from apps.telegram_bot.preferences import global_preferences
 
 
 def _get_buttons(buttons: str) -> t.List[telegram.KeyboardButton]:
@@ -16,7 +16,7 @@ def _get_buttons(buttons: str) -> t.List[telegram.KeyboardButton]:
 
 def get_crypto_currencies_keyboard() -> telegram.ReplyKeyboardMarkup:
     """Get telegram.ReplyKeyboardMarkup that contains of cryptocurrencies' buttons."""
-
-    buttons = _get_buttons(BUTTONS_CRYPTO_CURRENCIES_FROM)
+    currencies_str = global_preferences.get("buttons__crypto_currencies_from")
+    buttons = _get_buttons(currencies_str)
     keyboard = telegram.ReplyKeyboardMarkup(keyboard=buttons, resize_keyboard=True)
     return keyboard

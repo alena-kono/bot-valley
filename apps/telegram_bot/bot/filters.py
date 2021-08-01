@@ -1,7 +1,7 @@
 import telegram
 from telegram.ext.filters import MessageFilter
 
-from apps.telegram_bot.preferences import BUTTONS_CRYPTO_CURRENCIES_FROM
+from apps.telegram_bot.preferences import global_preferences
 
 
 class CryptoCurrencyFilter(MessageFilter):
@@ -10,6 +10,9 @@ class CryptoCurrencyFilter(MessageFilter):
     """
 
     def filter(self, message: telegram.Message) -> bool:
-        if message.text in BUTTONS_CRYPTO_CURRENCIES_FROM:
+        currencies_str = global_preferences.get("buttons__crypto_currencies_from")
+        currencies_str.replace(" ", "")
+        currencies_list = currencies_str.split(",")
+        if message.text in currencies_list:
             return True
         return False
