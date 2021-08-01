@@ -9,15 +9,16 @@ from apps.cryptocurrency.exceptions import (
     InvalidResponseError,
 )
 from apps.cryptocurrency.utils import JsonDict, extract_json
+from apps.telegram_bot.bot.default_static import CRYPTO_CURRENCIES_TO
 
-ExchangeRateSymbols = t.List[str]
+ExchangeRateSymbol = str
 RequestParams = t.Dict[str, str]
 
 
 class CryptoCompareAPI:
     """Represents API of CryptoCompare service - https://min-api.cryptocompare.com."""
 
-    BASE_API_URL = "https://min-api.cryptocompare.com/data/pricemulti"
+    BASE_API_URL = "https://min-api.cryptocompare.com/data/price"
 
     def __init__(self) -> None:
         pass
@@ -36,12 +37,12 @@ class CryptoCompareAPI:
 
     @staticmethod
     def _convert_to_request_params(
-        from_: ExchangeRateSymbols, to_: ExchangeRateSymbols
+        from_: ExchangeRateSymbol, to_: ExchangeRateSymbol = CRYPTO_CURRENCIES_TO
     ) -> RequestParams:
-        """Convert ExchangeRateSymbols to request params."""
+        """Convert from and to ExchangeRateSymbols to neccesary request params."""
 
         params = {
-            "fsyms": from_,
+            "fsym": from_,
             "tsyms": to_,
         }
         return params
@@ -63,9 +64,9 @@ class CryptoCompareAPI:
         raise CryptoCompareAPIError(response.status_code)
 
     def get_exchange_rates(
-        self, from_: ExchangeRateSymbols, to_: ExchangeRateSymbols
+        self, from_: ExchangeRateSymbol, to_: ExchangeRateSymbol
     ) -> t.Optional[JsonDict]:
-        """Get and return the current price of any cryptocurrency (from_) in any other currency (to_).
+        """Get and return the current price of one cryptocurrency (from_) in any other currency (to_).
         If the crypto does not trade directly into the toSymbol requested, BTC will be used for conversion.
 
         Return None and log error in case if CryptoCompareAPIError occurs.

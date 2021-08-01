@@ -24,13 +24,14 @@ def crypto_exchange_rate(update: Update, context: CallbackContext) -> None:
     It sends a reply containing current exchange rate of received cryptocurrency.
     """
 
-    crypto_requested = update.message.text
-    from_ = global_preferences.get("buttons__crypto_currencies_from")
+    crypto_requested_from_ = update.message.text
     to_ = CRYPTO_CURRENCIES_TO
-    exchange_rate = cryptocompare_api.get_exchange_rates(from_=from_, to_=to_)
+    exchange_rate = cryptocompare_api.get_exchange_rates(
+        from_=crypto_requested_from_, to_=to_
+    )
     if exchange_rate:
-        rate = exchange_rate.get(crypto_requested).get(to_)
-        text = f"`1 {crypto_requested} is {rate} USD`"
+        rate = exchange_rate.get(to_)
+        text = f"`1 {crypto_requested_from_} is {rate} USD`"
     else:
         text = global_preferences.get("messages__crypto_exchange_rate_error")
     update.message.reply_text(text=text, parse_mode="Markdown")
