@@ -11,6 +11,7 @@ services:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
     image: bot_valley_production_django
+    restart: always
     depends_on:
       - postgres
       - redis
@@ -25,6 +26,7 @@ services:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
     image: bot_valley_production_postgres
+    restart: always
     volumes:
       - production_postgres_data:/var/lib/postgresql/data:Z
       - production_postgres_data_backups:/backups:z
@@ -34,6 +36,7 @@ services:
   telegram_bot:
     <<: *django
     image: bot_valley_production_telegram_bot
+    restart: always
     depends_on:
       - django
     ports:
@@ -45,6 +48,7 @@ services:
       context: .
       dockerfile: ./compose/production/traefik/Dockerfile
     image: bot_valley_production_traefik
+    restart: always
     depends_on:
       - django
     volumes:
@@ -55,3 +59,4 @@ services:
 
   redis:
     image: redis:5.0
+    restart: always
